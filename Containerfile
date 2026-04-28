@@ -25,14 +25,18 @@
 # is intended for --network=none use, and shipping them would only
 # mislead callers.
 
-FROM registry.fedoraproject.org/fedora:43
+FROM registry.fedoraproject.org/fedora-minimal:43
 
 # Python stack via Fedora RPMs rather than pip. Fedora rebuilds the
 # native packages against whatever python3 it ships, which sidesteps
 # the "no wheel for this Python" trap, and shared libs dedupe cleanly
 # across the stack.
-RUN dnf install -y \
-        --setopt=install_weak_deps=False \
+#
+# Using fedora-minimal (microdnf, ~80MB base) instead of full fedora
+# (~190MB base) drops a layer of distro tooling we never use. Same
+# RPM packages, same compatibility, just less cruft.
+RUN microdnf install -y \
+        --setopt=install_weak_deps=0 \
         --setopt=tsflags=nodocs \
         ImageMagick \
         bash \
@@ -70,8 +74,8 @@ RUN dnf install -y \
         ripgrep \
         sed \
         shadow-utils \
-    && dnf clean all \
-    && rm -rf /var/cache/dnf /var/log/dnf*
+    && microdnf clean all \
+    && rm -rf /var/cache/dnf /var/cache/yum /var/log/dnf* /var/log/yum* /usr/share/locale/* /usr/share/man
 
 # Pre-warm matplotlib's font cache so the first plot at runtime doesn't
 # pay the multi-second TTF scan.
