@@ -1,7 +1,10 @@
-# Fedora-based container image with the Python data-analysis stack
-# (pandas, numpy, matplotlib, scikit-learn, ipykernel) and a handful of
-# read-only CLI tools (git, jq, ripgrep, etc.). Designed to be run as a
-# rootless one-shot container under hardened defaults:
+# Fedora-based container image bundling the Python data-analysis stack
+# (pandas, numpy, scipy, matplotlib, seaborn, plotly, scikit-learn,
+# statsmodels, pyarrow, ipykernel), document/image tooling (Pillow,
+# openpyxl, xlsxwriter, pypdf, reportlab, BeautifulSoup, lxml, pyyaml,
+# tabulate), and a handful of read-only CLI tools (git, jq, ripgrep,
+# pandoc, ImageMagick, etc.). Designed to be run as a rootless one-shot
+# container under hardened defaults:
 #
 #     podman run --rm \
 #       --read-only \
@@ -24,13 +27,14 @@
 
 FROM registry.fedoraproject.org/fedora:43
 
-# Python data stack via Fedora RPMs rather than pip. Fedora rebuilds
-# pandas/numpy/etc. against whatever python3 it ships, which sidesteps
+# Python stack via Fedora RPMs rather than pip. Fedora rebuilds the
+# native packages against whatever python3 it ships, which sidesteps
 # the "no wheel for this Python" trap, and shared libs dedupe cleanly
 # across the stack.
 RUN dnf install -y \
         --setopt=install_weak_deps=False \
         --setopt=tsflags=nodocs \
+        ImageMagick \
         bash \
         ca-certificates \
         coreutils \
@@ -39,16 +43,30 @@ RUN dnf install -y \
         grep \
         jq \
         less \
+        pandoc \
         python3 \
         python3-pip \
+        python3-beautifulsoup4 \
         python3-ipykernel \
         python3-jupyter-client \
-        python3-pandas \
-        python3-numpy \
+        python3-lxml \
         python3-matplotlib \
-        python3-scikit-learn \
+        python3-numpy \
+        python3-openpyxl \
+        python3-pandas \
+        python3-pillow \
+        python3-plotly \
         python3-pyarrow \
+        python3-pypdf \
+        python3-pyyaml \
+        python3-reportlab \
         python3-requests \
+        python3-scikit-learn \
+        python3-scipy \
+        python3-seaborn \
+        python3-statsmodels \
+        python3-tabulate \
+        python3-xlsxwriter \
         ripgrep \
         sed \
         shadow-utils \
