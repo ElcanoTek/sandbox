@@ -1,12 +1,12 @@
 # sandbox
 
 A Fedora-based container image bundling the Python data-analysis stack
-(`pandas`, `numpy`, `scipy`, `matplotlib`, `seaborn`, `plotly`,
-`scikit-learn`, `statsmodels`, `pyarrow`, `ipykernel`), document and
-image tooling (`Pillow`, `openpyxl`, `xlsxwriter`, `pypdf`, `reportlab`,
-`BeautifulSoup`, `lxml`, `pyyaml`, `tabulate`), plus a handful of
-read-only CLI tools (`git`, `jq`, `ripgrep`, `pandoc`, `ImageMagick`).
-Intended for rootless one-shot execution under hardened defaults.
+(`pandas`, `numpy`, `scipy`, `matplotlib`, `seaborn`, `scikit-learn`,
+`pyarrow`, `ipykernel`), document and image tooling (`Pillow`,
+`openpyxl`, `xlsxwriter`, `pypdf`, `reportlab`, `BeautifulSoup`, `lxml`,
+`pyyaml`, `tabulate`), plus a handful of read-only CLI tools (`git`,
+`jq`, `ripgrep`, `pandoc`, `ImageMagick`). Intended for rootless
+one-shot execution under hardened defaults.
 
 ## Pulling
 

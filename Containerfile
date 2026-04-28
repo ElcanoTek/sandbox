@@ -1,9 +1,9 @@
 # Fedora-based container image bundling the Python data-analysis stack
-# (pandas, numpy, scipy, matplotlib, seaborn, plotly, scikit-learn,
-# statsmodels, pyarrow, ipykernel), document/image tooling (Pillow,
-# openpyxl, xlsxwriter, pypdf, reportlab, BeautifulSoup, lxml, pyyaml,
-# tabulate), and a handful of read-only CLI tools (git, jq, ripgrep,
-# pandoc, ImageMagick, etc.). Designed to be run as a rootless one-shot
+# (pandas, numpy, scipy, matplotlib, seaborn, scikit-learn, pyarrow,
+# ipykernel), document/image tooling (Pillow, openpyxl, xlsxwriter,
+# pypdf, reportlab, BeautifulSoup, lxml, pyyaml, tabulate), and a
+# handful of read-only CLI tools (git, jq, ripgrep, pandoc,
+# ImageMagick, etc.). Designed to be run as a rootless one-shot
 # container under hardened defaults:
 #
 #     podman run --rm \
@@ -59,7 +59,6 @@ RUN microdnf install -y \
         python3-openpyxl \
         python3-pandas \
         python3-pillow \
-        python3-plotly \
         python3-pyarrow \
         python3-pypdf \
         python3-pyyaml \
@@ -68,7 +67,6 @@ RUN microdnf install -y \
         python3-scikit-learn \
         python3-scipy \
         python3-seaborn \
-        python3-statsmodels \
         python3-tabulate \
         python3-xlsxwriter \
         ripgrep \
