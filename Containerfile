@@ -48,6 +48,7 @@ RUN microdnf install -y \
         jq \
         less \
         pandoc \
+        unzip \
         python3 \
         python3-pip \
         python3-beautifulsoup4 \
