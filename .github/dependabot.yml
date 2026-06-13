@@ -1,0 +1,23 @@
+# Dependabot config — https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+# Weekly version + security updates, bundled into one PR per ecosystem.
+# The build gates the merge — review the consolidated diff.
+#
+# Only github-actions applies here: the Python stack ships as Fedora RPMs
+# (microdnf, not pip) and the base image tracks fedora-minimal:latest, so
+# neither is dependabot-managed. PRs target main (this repo has no dev branch).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+      - github-actions
+    commit-message:
+      prefix: chore(ci)
+    groups:
+      github-actions:
+        patterns:
+          - "*"
