@@ -25,7 +25,7 @@
 # is intended for --network=none use, and shipping them would only
 # mislead callers.
 
-FROM registry.fedoraproject.org/fedora-minimal:43
+FROM registry.fedoraproject.org/fedora-minimal:latest
 
 # Python stack via Fedora RPMs rather than pip. Fedora rebuilds the
 # native packages against whatever python3 it ships, which sidesteps
