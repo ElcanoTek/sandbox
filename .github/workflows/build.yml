@@ -7,6 +7,13 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+  # Weekly rebuild so :latest keeps tracking upstream Fedora package
+  # updates (incl. CVE fixes). The Containerfile pins no RPM versions,
+  # so a rebuild with no code change still pulls the freshest packages.
+  # Scheduled runs execute on the default branch, so the latest tag
+  # (enable={{is_default_branch}}) refreshes correctly.
+  schedule:
+    - cron: '0 8 * * 1'  # Mondays 08:00 UTC
 
 concurrency:
   group: build-${{ github.ref }}
